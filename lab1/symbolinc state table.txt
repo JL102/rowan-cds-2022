@@ -1,0 +1,21 @@
+PS 	Input	NS
+A	0	B
+A	1	F
+B	0	C
+B	1	F
+C	0	D
+C	1	F
+D	0	E
+D	1	F
+E	0	E
+E	1	F
+F	0	B
+F	1	G
+G	0	B
+G	1	H
+H	0	B
+H	1	I
+I	0	B
+I	1	I
+
+oliver
