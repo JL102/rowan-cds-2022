@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- fourconseq: Detects either four consecutive zeros or ones (with rollover) as a state machine
+-- fourconseq: Detects either four consecutive zeros or ones (with rollover) as a x machine
 
 entity fourconseq is
 port(
