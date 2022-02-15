@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- fourconseq: Detects either four consecutive zeros or ones (with rollover) as a state machine
+-- fourconseq: Detects either four consecutive zeros or ones (with rollover) as a x machine
 
 -- component flipflop
 -- 	port ()
@@ -20,25 +20,26 @@ port(
 end fourconseq;
 
 architecture imp of fourconseq is
-	signal state : std_logic_vector(8 downto 0);
+	signal X : std_logic_vector(8 downto 0); -- previous state
+	signal Y : std_logic_vector(8 downto 0); -- next state
 begin
 	process (Clk)
 	begin
 		if rising_edge(Clk) then
 			if Reset = '1' then
-				state <= "000000001";
+				X <= "000000001";
 			else
-				-- Below: input/state logic
-				state(1) <= not(W) and not(state(2)) and not(state(3)) and not(state(4));
-				state(2) <= not(W) and state(1);
-				state(3) <= not(W) and state(2);
-				state(4) <= not(W) and (state(3) or state(4));
-				state(5) <= W and not(state(6)) and not(state(7)) and not(state(8));
-				state(6) <= W and state(5);
-				state(7) <= W and state(6);
-				state(8) <= W and (state(7) or state(8));
+				-- Below: input/x logic
+				Y(1) <= not(W) and not(X(2)) and not(X(3)) and not(X(4));
+				x(2) <= not(W) and x(1);
+				x(3) <= not(W) and x(2);
+				x(4) <= not(W) and (x(3) or x(4));
+				x(5) <= W and not(x(6)) and not(x(7)) and not(x(8));
+				x(6) <= W and x(5);
+				x(7) <= W and x(6);
+				x(8) <= W and (x(7) or x(8));
 				-- Below: output logic
-				Z <= state(4) or state(8);
+				Z <= x(4) or x(8);
 			end if;
 		end if;
 	end process;
