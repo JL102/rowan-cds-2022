@@ -24,7 +24,7 @@ begin
 		wait;
 	end process;
 	-- Instantiate the Unit Under Test
-	uut : entity work.tlc
+	uut : entity work.fourconseq
 	port map(
 		clk => clk, reset => reset,
 		cars => cars, short => short,

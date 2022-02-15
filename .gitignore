@@ -1,3 +1,7 @@
 *.flock
 *.db_info
 *.bak
+*.qmsg
+*.rpt
+db
+*.summary
