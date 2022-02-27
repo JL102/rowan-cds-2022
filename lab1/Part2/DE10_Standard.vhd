@@ -10,12 +10,6 @@ entity DE10_Standard is
 port
 (
 
-	------------ CLOCK ------------
-	CLOCK2_50       	:in    	std_logic;
-	CLOCK3_50       	:in    	std_logic;
-	CLOCK4_50       	:in    	std_logic;
-	CLOCK_50        	:in    	std_logic;
-
 	------------ KEY ------------
 	KEY             	:in    	std_logic_vector(3 downto 0);
 
