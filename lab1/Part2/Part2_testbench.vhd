@@ -9,21 +9,33 @@ architecture tb of Part2_testbench is
 	signal clk : std_logic_vector(3 downto 0) := "0000";
 	signal sw : std_logic_vector(9 downto 0);-- := (others => '0');
 	signal outLEDs : std_logic_vector(9 downto 0); --:= (others => '0');
+	signal W, Reset : std_logic;
 	-- One signal per port is typical
 begin
-	clk(0) <= not clk(0) after 20 ns;
+	clk(0) <= not clk(0) after 10 ns;
+	sw(1) <= W; 	-- Switch 1: Input (second to last one)
+	sw(0) <= Reset; -- Switch 0: Reset (last one)
 	-- Apply stimulus and check the results
 	process
 	begin
+		Reset <= '1';
+		W     <= '0';
 		wait for 100 ns;
-		sw(0) <= '0';
-		sw(1) <= '0';
+		Reset <= '0';
+		W		<= '1';
 		wait for 100 ns;
-		sw(0) <= '1';
-		sw(1) <= '1';
+		W		<= '0';
+		wait for 33.3 ns;
+		W		<= '1';
+		wait for 33.3 ns;
+		W		<= '0';
+		wait for 33.3 ns;
+		W 		<= '1';
 		wait for 100 ns;
-		sw(0) <= '1';
-		sw(1) <= '0';
+		W     <= '1';
+		Reset	<= '1';
+		wait for 100 ns;
+		W     <= '0';
 		wait for 100 ns;
 		
 		assert false report "Test: OK" severity failure;
